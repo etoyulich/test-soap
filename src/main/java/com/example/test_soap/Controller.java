@@ -27,7 +27,7 @@ public class Controller {
     public String start(@RequestParam(value = "xml") String xml) throws Exception {
         System.out.println(xml);
        // Document doc = convertToCdata(xml);
-        return convertToCdata(xml);
+        return "aboba";
 
     }
 //    private Document convertToCdata(String data) throws ParserConfigurationException, IOException, SAXException {
