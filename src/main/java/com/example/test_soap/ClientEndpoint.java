@@ -7,13 +7,11 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 
@@ -24,21 +22,29 @@ public class ClientEndpoint {
 
     @PayloadRoot(localPart = "getClientRequest", namespace = namespaceUri)
     @ResponsePayload
-    public GetClientResponse getClientResponse(@RequestPayload GetClientRequest request) throws TransformerException {
-        System.out.println("я тут");
-        System.out.println(request.getClient());
+    public GetClientResponse getClientResponse(@RequestPayload GetClientRequest request) {
+
         GetClientResponse response = new GetClientResponse();
-
         TransformerFactory factory = TransformerFactory.newInstance();
-        Source xslt = new StreamSource(new File("src/transform.xslt"));
-        Transformer transformer = factory.newTransformer(xslt);
+        File file = new File("src/transform.xslt");
+        Source xslt = new StreamSource(file.getAbsolutePath());
 
-        Source text = new StreamSource(request.getClient());
-        StringWriter writer = new StringWriter();
-        Writer out = new StringWriter();
-        transformer.transform(text, new StreamResult(out));
-        transformer.transform(text, new StreamResult(writer));
-        response.setResponse(writer.toString());
+        Transformer transformer = null;
+        try {
+            transformer = factory.newTransformer(xslt);
+        } catch (TransformerConfigurationException e) {
+            throw new RuntimeException(e);
+        }
+
+        Source source = new StreamSource(new StringReader(request.getClient()));
+        Writer result = new StringWriter();
+        try {
+            transformer.transform(source, new StreamResult(result));
+        } catch (TransformerException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        response.setResponse(result.toString());
 
         return response;
     }
