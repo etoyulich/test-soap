@@ -7,7 +7,7 @@
             <xs:element name="getClientRequest">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="client" type="xs:string" />
+                        <xs:element name="xml" type="xs:string" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

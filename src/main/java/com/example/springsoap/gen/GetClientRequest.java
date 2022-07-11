@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="client" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="xml" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -29,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "client"
+    "xml"
 })
 @XmlRootElement(name = "getClientRequest")
 public class GetClientRequest {
 
     @XmlElement(required = true)
-    protected String client;
+    protected String xml;
 
     /**
-     * Gets the value of the client property.
+     * Gets the value of the xml property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getClient() {
-        return client;
+    public String getXml() {
+        return xml;
     }
 
     /**
-     * Sets the value of the client property.
+     * Sets the value of the xml property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setClient(String value) {
-        this.client = value;
+    public void setXml(String value) {
+        this.xml = value;
     }
 
 }

@@ -36,7 +36,7 @@ public class ClientEndpoint {
             throw new RuntimeException(e);
         }
 
-        Source source = new StreamSource(new StringReader(request.getClient()));
+        Source source = new StreamSource(new StringReader(request.getXml()));
         Writer result = new StringWriter();
         try {
             transformer.transform(source, new StreamResult(result));
