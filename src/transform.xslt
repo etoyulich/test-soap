@@ -4,13 +4,18 @@
 
     <xsl:template match="person|document">
         <xsl:element name="{name()}">
-            <xsl:apply-templates select="document|name|surname|patronymic|birthDate|gender|series|number|type|issueDate" />
+            <xsl:for-each select="./*">
+                <xsl:sort select="count(./*)" data-type="number" order="ascending"/>
+                <xsl:if test="count(./*) = 0 ">
+                    <xsl:attribute name="{name()}">
+                        <xsl:value-of select="current()" />
+                    </xsl:attribute>
+                </xsl:if>
+                <xsl:if test="count(./*) > 0 ">
+                    <xsl:apply-templates select="."/>
+                </xsl:if>
+            </xsl:for-each>
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="name|surname|patronymic|birthDate|gender|series|number|type|issueDate">
-        <xsl:attribute name="{name()}">
-            <xsl:value-of select="current()" />
-        </xsl:attribute>
-    </xsl:template>
 </xsl:transform>
