@@ -2,6 +2,8 @@ package com.example.testsoap;
 
 import com.example.springsoap.gen.GetClientRequest;
 import com.example.springsoap.gen.GetClientResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -21,6 +23,8 @@ import java.nio.file.Paths;
 public class ClientEndpoint {
 
     private static final String namespaceUri = "http://soap.leonis.md/";
+
+    private static final Logger logger = LogManager.getLogger(ClientEndpoint.class);
 
     @PayloadRoot(localPart = "getClientRequest", namespace = namespaceUri)
     @ResponsePayload
