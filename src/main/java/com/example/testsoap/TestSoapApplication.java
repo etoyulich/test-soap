@@ -1,4 +1,4 @@
-package com.example.test_soap;
+package com.example.testsoap;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

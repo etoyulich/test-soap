@@ -1,4 +1,4 @@
-package com.example.test_soap;
+package com.example.testsoap;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

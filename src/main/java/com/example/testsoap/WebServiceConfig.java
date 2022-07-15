@@ -1,4 +1,4 @@
-package com.example.test_soap;
+package com.example.testsoap;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -25,9 +25,9 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     @Bean(name = "client")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema clientSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("ClientPort");
+        wsdl11Definition.setPortTypeName("HelloWorldWSPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://www.example.com/springsoap/gen");
+        wsdl11Definition.setTargetNamespace("http://soap.leonis.md/");
         wsdl11Definition.setSchema(clientSchema);
         return wsdl11Definition;
     }

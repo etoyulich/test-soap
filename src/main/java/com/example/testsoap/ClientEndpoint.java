@@ -1,4 +1,4 @@
-package com.example.test_soap;
+package com.example.testsoap;
 
 import com.example.springsoap.gen.GetClientRequest;
 import com.example.springsoap.gen.GetClientResponse;
@@ -14,11 +14,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Endpoint
 public class ClientEndpoint {
 
-    private static final String namespaceUri = "http://www.example.com/springsoap/gen";
+    private static final String namespaceUri = "http://soap.leonis.md/";
 
     @PayloadRoot(localPart = "getClientRequest", namespace = namespaceUri)
     @ResponsePayload
@@ -27,7 +29,7 @@ public class ClientEndpoint {
         GetClientResponse response = new GetClientResponse();
         TransformerFactory factory = TransformerFactory.newInstance();
 
-        try(InputStream is = new FileInputStream("src/transform.xslt")) {
+        try(InputStream is = Files.newInputStream(Paths.get("src/transform.xslt"))) {
             Source xslt = new StreamSource(is);
             Transformer transformer = factory.newTransformer(xslt);
             Source source = new StreamSource(new StringReader(request.getXml()));
