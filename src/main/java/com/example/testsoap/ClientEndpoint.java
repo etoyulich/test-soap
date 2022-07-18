@@ -22,7 +22,7 @@ import java.nio.file.Paths;
 @Endpoint
 public class ClientEndpoint {
 
-    private static final String namespaceUri = "http://soap.leonis.md/";
+    private static final String namespaceUri = "http://www.example.com/springsoap/gen";
 
     private static final Logger logger = LogManager.getLogger(ClientEndpoint.class);
 
