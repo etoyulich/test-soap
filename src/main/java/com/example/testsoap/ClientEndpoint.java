@@ -36,7 +36,7 @@ public class ClientEndpoint {
         try(InputStream is = Files.newInputStream(Paths.get("src/transform.xslt"))) {
             Source xslt = new StreamSource(is);
             Transformer transformer = factory.newTransformer(xslt);
-            Source source = new StreamSource(new StringReader(request.getXml()));
+            Source source = new StreamSource(new StringReader(request.getRequest()));
             Writer result = new StringWriter();
             transformer.transform(source, new StreamResult(result));
             response.setResponse(result.toString());
