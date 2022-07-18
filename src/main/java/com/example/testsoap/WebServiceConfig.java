@@ -16,18 +16,18 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 public class WebServiceConfig extends WsConfigurerAdapter {
     @Bean
-    public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
+    public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean(servlet, "/ws/*");
+        return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
     @Bean(name = "client")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema clientSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("HelloWorldWSPort");
+        wsdl11Definition.setPortTypeName("ClientInterface");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://soap.leonis.md/");
+        wsdl11Definition.setTargetNamespace("http://www.example.com/springsoap/gen");
         wsdl11Definition.setSchema(clientSchema);
         return wsdl11Definition;
     }
