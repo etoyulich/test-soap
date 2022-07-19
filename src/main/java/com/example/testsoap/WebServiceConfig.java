@@ -25,6 +25,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     @Bean(name = "client")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema clientSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setServiceName("ClientWSService");
         wsdl11Definition.setPortTypeName("ClientInterface");
         wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setTargetNamespace("http://www.example.com/springsoap/gen");
