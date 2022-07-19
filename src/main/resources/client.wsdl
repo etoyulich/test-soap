@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.example.com/springsoap/gen" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="serviceName" targetNamespace="http://www.example.com/springsoap/gen">
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://www.example.com/springsoap/gen" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsam="http://www.w3.org/1999/xhtml"
+                  name="ClientWSService" targetNamespace="http://www.example.com/springsoap/gen">
     <wsdl:types>
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.com/springsoap/gen" elementFormDefault="unqualified" targetNamespace="http://www.example.com/springsoap/gen" version="1.0">
             <xs:element name="getClientRequest" type="tns:getClientRequest"/>
@@ -26,13 +30,13 @@
     </wsdl:message>
     <wsdl:portType name="ClientInterface">
         <wsdl:operation name="getClientRequest">
-            <wsdl:input message="tns:getClientRequest" name="getClientRequest">
+            <wsdl:input message="tns:getClientRequest" wsam:Action="http://www.example.com/springsoap/gen/getClientRequest" name="getClientRequest">
             </wsdl:input>
-            <wsdl:output message="tns:getClientResponse" name="getClientResponse">
+            <wsdl:output message="tns:getClientResponse" wsam:Action="http://www.example.com/springsoap/gen/getClientResponse" name="getClientResponse">
             </wsdl:output>
         </wsdl:operation>
     </wsdl:portType>
-    <wsdl:binding name="serviceNameSoapBinding" type="tns:ClientInterface">
+    <wsdl:binding name="ClientWSPortBinding" type="tns:ClientInterface">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="getClientRequest">
             <soap:operation soapAction="" style="document"/>
@@ -44,8 +48,8 @@
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
-    <wsdl:service name="serviceName">
-        <wsdl:port binding="tns:serviceNameSoapBinding" name="portName">
+    <wsdl:service name="ClientWSService">
+        <wsdl:port binding="tns:ClientWSPortBinding" name="ClientWSPortBinding">
             <soap:address location="http://localhost:8181/ws"/>
         </wsdl:port>
     </wsdl:service>
