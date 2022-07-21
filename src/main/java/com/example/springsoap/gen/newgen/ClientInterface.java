@@ -5,6 +5,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
@@ -17,6 +18,7 @@ import javax.xml.ws.ResponseWrapper;
  * 
  */
 @WebService(name = "ClientInterface", targetNamespace = "http://www.example.com/springsoap/gen")
+@SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
     ObjectFactory.class
 })
@@ -33,8 +35,8 @@ public interface ClientInterface {
     @WebResult(name = "response", targetNamespace = "")
     @RequestWrapper(localName = "getClientRequest", targetNamespace = "http://www.example.com/springsoap/gen", className = "com.example.springsoap.gen.newgen.GetClientRequest")
     @ResponseWrapper(localName = "getClientResponse", targetNamespace = "http://www.example.com/springsoap/gen", className = "com.example.springsoap.gen.newgen.GetClientResponse")
-    public String getClientRequest(
+    public GetClientResponse getClientRequest(
         @WebParam(name = "request", targetNamespace = "")
-        String request);
+        GetClientRequest request);
 
 }
