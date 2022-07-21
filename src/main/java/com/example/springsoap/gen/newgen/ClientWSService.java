@@ -3,9 +3,12 @@ package com.example.springsoap.gen.newgen;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import javax.jws.WebService;
 import javax.xml.namespace.QName;
-import javax.xml.ws.*;
+import javax.xml.ws.Service;
+import javax.xml.ws.WebEndpoint;
+import javax.xml.ws.WebServiceClient;
+import javax.xml.ws.WebServiceException;
+import javax.xml.ws.WebServiceFeature;
 
 
 /**
@@ -14,7 +17,7 @@ import javax.xml.ws.*;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "ClientWSService", targetNamespace = "http://www.example.com/springsoap/gen", wsdlLocation = "http://localhost:8181/ws/client.wsdl")
+@WebServiceClient(name = "ClientWSService", targetNamespace = "http://www.example.com/springsoap/gen", wsdlLocation = "src/main/resources/client.wsdl")
 public class ClientWSService
     extends Service
 {
@@ -27,7 +30,7 @@ public class ClientWSService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL(null,"http://localhost:8181/ws/client.wsdl");
+            url = new URL(null, "src/main/resources/client.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -76,10 +79,10 @@ public class ClientWSService
      * @return
      *     returns ClientInterface
      */
-//    @WebEndpoint(name = "ClientWSPortBinding")
-//    public ClientInterface getClientWSPortBinding(WebServiceFeature... features) {
-//        return super.getPort(new QName("http://www.example.com/springsoap/gen", "ClientWSPortBinding"), ClientInterface.class, features);
-//    }
+    @WebEndpoint(name = "ClientWSPortBinding")
+    public ClientInterface getClientWSPortBinding(WebServiceFeature... features) {
+        return super.getPort(new QName("http://www.example.com/springsoap/gen", "ClientWSPortBinding"), ClientInterface.class, features);
+    }
 
     private static URL __getWsdlLocation() {
         if (CLIENTWSSERVICE_EXCEPTION!= null) {
