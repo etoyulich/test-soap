@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="xml" doctype-public="XSLT-compat" omit-xml-declaration="yes" encoding="UTF-8" indent="yes" />
-
     <xsl:template match="person|document">
         <xsl:element name="{name()}">
             <xsl:for-each select="./*">
@@ -17,5 +16,4 @@
             </xsl:for-each>
         </xsl:element>
     </xsl:template>
-
 </xsl:transform>
